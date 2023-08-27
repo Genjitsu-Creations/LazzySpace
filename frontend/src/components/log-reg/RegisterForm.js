@@ -1,5 +1,4 @@
 import { Fragment, useContext } from "react";
-import { store } from "react-notifications-component";
 import axios from "axios";
 
 import styles from "./RegisterForm.module.css";
@@ -96,38 +95,14 @@ const ModalOverlay = (props) => {
       await axios.post(BACKEND_URL + "api/auth/signup", data);
     } catch (e) {
       console.log(e);
-      store.addNotification({
-        title: "Error",
-        message: "Account already Exist",
-        type: "danger",
-        insert: "top",
-        container: "bottom-right",
-        animationIn: ["animate__animated", "animate__fadeIn"],
-        animationOut: ["animate_animated", "animate__fadeOut"],
-        dismiss: {
-          duration: 5000,
-          onScreen: true,
-        },
-      });
+      
       return;
     }
     authCtx.onCloseRegister();
     resetName();
     resetEmail();
     resetPassword();
-    store.addNotification({
-      title: "Success",
-      message: "Registration Successful",
-      type: "success",
-      insert: "top",
-      container: "bottom-right",
-      animationIn: ["animate__animated", "animate__fadeIn"],
-      animationOut: ["animate_animated", "animate__fadeOut"],
-      dismiss: {
-        duration: 5000,
-        onScreen: true,
-      },
-    });
+
   };
 
   const nameInputClasses = nameHasError

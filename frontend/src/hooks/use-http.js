@@ -1,5 +1,4 @@
 import { useReducer, useCallback } from "react";
-import { store } from "react-notifications-component";
 
 const httpReducer = (state, action) => {
   if (action.type === "SEND") {
@@ -46,19 +45,6 @@ const useHttp = (requestFunction, initialValue = null) => {
       const responseData = await requestFunction(requestData);
       dispatch({ type: "SUCCESS", responseData });
     } catch (error) {
-      store.addNotification({
-        title: "Error",
-        message: error.message || "Something went wrong",
-        type: "danger",
-        insert: "top",
-        container: "bottom-right",
-        animationIn: ["animate__animated", "animate__fadeIn"],
-        animationOut: ["animate_animated", "animate__fadeOut"],
-        dismiss: {
-          duration: 5000,
-          onScreen: true,
-        },
-      });
       dispatch({
         type:"ERROR",
         error: error.message || "Something went wrong",
@@ -73,19 +59,6 @@ const useHttp = (requestFunction, initialValue = null) => {
   }
 
   const handleNotify = (message) => {
-    return store.addNotification({
-      title: "Info",
-      message: message,
-      type: "default",
-      insert: "top",
-      container: "bottom-right",
-      animationIn: ["animate__animated", "animate__fadeIn"],
-      animationOut: ["animate_animated", "animate__fadeOut"],
-      dismiss: {
-        duration: 5000,
-        onScreen: true,
-      },
-    });
   }
 
   return{

@@ -1,6 +1,5 @@
 import { Fragment,useState, useContext } from "react";
 import { useDispatch } from "react-redux";
-import { store } from "react-notifications-component";
 import { FaYoast } from "react-icons/fa";
 import { BsBellFill, BsSearch } from "react-icons/bs";
 import { Avatar, Menu, Divider } from "@mantine/core";
@@ -65,19 +64,7 @@ const Navbar = (props) => {
   };
 
   const onAcceptNotification = (notification) => {
-    store.addNotification({
-      title: "Accepted",
-      message: `You have joined ${notification.boardName}`,
-      type: "success",
-      insert: "top",
-      container: "bottom-right",
-      animationIn: ["animate__animated", "animate__fadeIn"],
-      animationOut: ["animate_animated", "animate__fadeOut"],
-      dismiss: {
-        duration: 5000,
-        onScreen: true,
-      },
-    });
+
 
     let notifyData = {
       adminId,
@@ -91,19 +78,7 @@ const Navbar = (props) => {
   };
 
   const onRejectNotification = (notification) => {
-    store.addNotification({
-      title: "Message Sent",
-      message: `The request to join ${notification.boardName} has been rejected`,
-      type: "success",
-      insert: "top",
-      container: "bottom-right",
-      animationIn: ["animate__animated", "animate__fadeIn"],
-      animationOut: ["animate_animated", "animate__fadeOut"],
-      dismiss: {
-        duration: 5000,
-        onScreen: true,
-      },
-    });
+    
     console.log(notification)
 
 

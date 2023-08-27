@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import { store } from "react-notifications-component";
 import axios from "axios";
 
 import styles from "./LoginForm.module.css";
@@ -48,24 +47,12 @@ const Login = () => {
       email: email,
       password: password,
     };
+    
     let Res;
     try {
       Res = await axios.post(BACKEND_URL + "api/auth/login", data);
     } catch (e) {
       console.log(e);
-      store.addNotification({
-        title: "Error",
-        message: "Account doesn't exist/User Info incorrect",
-        type: "danger",
-        insert: "top",
-        container: "bottom-right",
-        animationIn: ["animate__animated", "animate__fadeIn"],
-        animationOut: ["animate_animated", "animate__fadeOut"],
-        dismiss: {
-          duration: 5000,
-          onScreen: true,
-        },
-      });
 
       resetEmail();
       resetPassword();
@@ -79,20 +66,6 @@ const Login = () => {
       Res.data.color,
       Res.data.notification);
 
-
-    store.addNotification({
-      title: "Success",
-      message: "Login Successful",
-      type: "success",
-      insert: "top",
-      container: "bottom-right",
-      animationIn: ["animate__animated", "animate__fadeIn"],
-      animationOut: ["animate_animated", "animate__fadeOut"],
-      dismiss: {
-        duration: 5000,
-        onScreen: true,
-      },
-    });
   };
   return (
     <Card className={styles.modal}>

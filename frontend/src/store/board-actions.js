@@ -1,5 +1,4 @@
 import axios from "axios";
-import { store } from "react-notifications-component";
 import { boardActions } from "./board-slice";
 import { boardsActions } from "./boards-slice";
 
@@ -34,19 +33,7 @@ export const createBoard = (boardTitle, adminId, recipientIds) => {
         })
       );
     } catch (error) {
-      store.addNotification({
-        title: "Error",
-        message: "Failed to the data",
-        type: "danger",
-        insert: "top",
-        container: "bottom-right",
-        animationIn: ["animate__animated", "animate__fadeIn"],
-        animationOut: ["animate_animated", "animate__fadeOut"],
-        dismiss: {
-          duration: 5000,
-          onScreen: true,
-        },
-      });
+      console.log(error)
     }
   };
 };
@@ -65,19 +52,7 @@ export const fetchGroupData = (boardId) => {
       const boardData = await LIST_FETCH();
       dispatch(boardActions.replaceGroupsData(boardData));
     } catch (error) {
-      store.addNotification({
-        title: "Error",
-        message: "Failed to the data",
-        type: "danger",
-        insert: "top",
-        container: "bottom-right",
-        animationIn: ["animate__animated", "animate__fadeIn"],
-        animationOut: ["animate_animated", "animate__fadeOut"],
-        dismiss: {
-          duration: 5000,
-          onScreen: true,
-        },
-      });
+      console.log(error)
     }
   };
 };
@@ -111,38 +86,14 @@ export const fetchMemberData = (boardId) => {
       });
       dispatch(boardActions.replaceMembersData(members));
     } catch (error) {
-      store.addNotification({
-        title: "Error",
-        message: "Failed to get members",
-        type: "danger",
-        insert: "top",
-        container: "bottom-right",
-        animationIn: ["animate__animated", "animate__fadeIn"],
-        animationOut: ["animate_animated", "animate__fadeOut"],
-        dismiss: {
-          duration: 5000,
-          onScreen: true,
-        },
-      });
+      console.log(error)
     }
   };
 };
 
 export const pushGroupToBoard = (name, id) => {
   if (name.trim() === "") {
-    store.addNotification({
-      title: "Error",
-      message: "The title of the list cannot be empty",
-      type: "danger",
-      insert: "top",
-      container: "bottom-right",
-      animationIn: ["animate__animated", "animate__fadeIn"],
-      animationOut: ["animate_animated", "animate__fadeOut"],
-      dismiss: {
-        duration: 5000,
-        onScreen: true,
-      },
-    });
+    console.log("The title of the list cannot be empty")
     return;
   }
   return async (dispatch) => {
@@ -187,19 +138,7 @@ export const popGroupFromBoard = (groupId, boardId) => {
 
 export const pushCardToGroup = (id, name, description) => {
   if (name === "") {
-    store.addNotification({
-      title: "Error",
-      message: "The title of the card cannot be empty",
-      type: "danger",
-      insert: "top",
-      container: "bottom-right",
-      animationIn: ["animate__animated", "animate__fadeIn"],
-      animationOut: ["animate_animated", "animate__fadeOut"],
-      dismiss: {
-        duration: 5000,
-        onScreen: true,
-      },
-    });
+    console.log("name cannot be empty")
     return;
   }
   return async (dispatch) => {
